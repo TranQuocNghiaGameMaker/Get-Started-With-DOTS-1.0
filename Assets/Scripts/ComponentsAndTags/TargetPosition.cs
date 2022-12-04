@@ -4,7 +4,8 @@ using Unity.Mathematics;
 using UnityEngine;
 
 
-public struct Speed : IComponentData
+
+public struct TargetPosition : IComponentData
 {
-    public float Value;
+    public float3 Value;
 }
