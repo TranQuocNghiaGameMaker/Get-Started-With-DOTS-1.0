@@ -12,6 +12,6 @@ public partial class GameObjectBaker : Baker<GameObjectAuthoring>
 {
     public override void Bake(GameObjectAuthoring authoring)
     {
-        AddComponent(new SpeedComponent { Speed = authoring.Speed });
+        AddComponent(new Speed { Value = authoring.Speed });
     }
 }

@@ -9,9 +9,9 @@ public partial class MoveSystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        foreach (var transform in SystemAPI.Query<TransformAspect>())
+        foreach ((var transform,var speed) in SystemAPI.Query<TransformAspect,RefRO<Speed>>())
         {
-            transform.Position += new float3(SystemAPI.Time.DeltaTime, 0, 0);
+            transform.Position += new float3(SystemAPI.Time.DeltaTime * speed.ValueRO.Value, 0, 0);
         }
     }
 }

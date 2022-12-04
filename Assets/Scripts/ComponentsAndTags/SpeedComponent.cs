@@ -3,7 +3,7 @@ using Unity.Entities;
 using UnityEngine;
 
 
-public struct SpeedComponent : IComponentData
+public struct Speed : IComponentData
 {
-    public float Speed;
+    public float Value;
 }
