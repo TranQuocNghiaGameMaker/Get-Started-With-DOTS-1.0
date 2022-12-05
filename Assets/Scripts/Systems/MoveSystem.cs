@@ -10,9 +10,10 @@ public partial class MoveSystem : SystemBase
     protected override void OnUpdate()
     {
         var deltaTime = SystemAPI.Time.DeltaTime;
+        var random = SystemAPI.GetSingletonRW<RandomComponent>();
         foreach (var moveObject in SystemAPI.Query<MoveAspect>())
         {
-            moveObject.Move(deltaTime);
+            moveObject.Move(deltaTime,random);
         }
     }
 }
