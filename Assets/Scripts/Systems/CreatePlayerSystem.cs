@@ -9,12 +9,18 @@ public partial class CreatePlayerSystem : SystemBase
 {
     protected override void OnUpdate()
     {
+        int spawnAmount = 1000;
         var playerQuery = EntityManager.CreateEntityQuery(typeof(PlayerTag));
         var playerSpawnerComponent = SystemAPI.GetSingleton<PlayerPrefabComponent>();
-        int spawnAmount = 2;
+        var randomComponent = SystemAPI.GetSingletonRW<RandomComponent>();
+        var ecb = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().
+                                                             CreateCommandBuffer(World.Unmanaged);
         if(playerQuery.CalculateEntityCount() < spawnAmount)
         {
-            EntityManager.Instantiate(playerSpawnerComponent.PlayerPrefab);
+            var entity = ecb.Instantiate(playerSpawnerComponent.PlayerPrefab);
+            ecb.SetComponent<Speed>(entity, new Speed{
+                Value = randomComponent.ValueRW.random.NextFloat(2f,4f)
+            });
         }
     }
 }
