@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class GameObjectAuthoring : MonoBehaviour
+public class PlayerAuthoring : MonoBehaviour
 {
     // Start is called before the first frame update
     public float Speed;
 }
-public partial class GameObjectBaker : Baker<GameObjectAuthoring>
+public partial class PlayerBaker : Baker<PlayerAuthoring>
 {
-    public override void Bake(GameObjectAuthoring authoring)
+    public override void Bake(PlayerAuthoring authoring)
     {
         AddComponent(new Speed { Value = authoring.Speed });
+        AddComponent<PlayerTag>();
     }
 }
