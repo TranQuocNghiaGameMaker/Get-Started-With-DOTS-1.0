@@ -4,8 +4,8 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
-
-public partial class MoveSystem : SystemBase
+//Create system run on main thread, can't use Burst Compile
+public partial class MoveSystemBase : SystemBase
 {
     protected override void OnUpdate()
     {
@@ -13,7 +13,8 @@ public partial class MoveSystem : SystemBase
         var random = SystemAPI.GetSingletonRW<RandomComponent>();
         foreach (var moveObject in SystemAPI.Query<MoveAspect>())
         {
-            moveObject.Move(deltaTime,random);
+            //moveObject.Move(deltaTime);
+            moveObject.ChangeTargetWhenArrive(random);
         }
     }
 }
