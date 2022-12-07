@@ -9,7 +9,7 @@ public partial class CreatePlayerSystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        int spawnAmount = 1000;
+        int spawnAmount = 10;
         var playerQuery = EntityManager.CreateEntityQuery(typeof(PlayerTag));
         var playerSpawnerComponent = SystemAPI.GetSingleton<PlayerPrefabComponent>();
         var randomComponent = SystemAPI.GetSingletonRW<RandomComponent>();

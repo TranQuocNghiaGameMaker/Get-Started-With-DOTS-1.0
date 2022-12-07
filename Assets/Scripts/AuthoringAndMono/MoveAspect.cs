@@ -33,9 +33,9 @@ public readonly partial struct MoveAspect : IAspect
     {
         return new float3
         (
-            randomComponent.ValueRW.random.NextFloat(0f, 15f),
+            randomComponent.ValueRW.random.NextFloat(0f, 30f),
             0,
-            randomComponent.ValueRW.random.NextFloat(0f, 15f)
+            randomComponent.ValueRW.random.NextFloat(0f, 30f)
         );
     }
 
