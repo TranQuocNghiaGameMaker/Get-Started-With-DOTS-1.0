@@ -21,7 +21,6 @@ public partial struct ISystemSpawnCube : ISystem
     public void OnUpdate(ref SystemState state)
     {
         state.Enabled = false;
-        var ecsSpawner = SystemAPI.GetSingletonEntity<ECSSpawnerTag>();
         var ecbSingleton = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
         var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
         new SpawnCubeJob

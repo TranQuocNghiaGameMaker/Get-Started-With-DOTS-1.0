@@ -22,6 +22,5 @@ public partial class ECSBaker : Baker<ECSSpawner>
         {
             Value = authoring.NumberToSpawn
         });
-        AddComponent<ECSSpawnerTag>();
     }
 }
