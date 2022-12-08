@@ -7,7 +7,7 @@ using UnityEngine;
 public class ECSSpawner : MonoBehaviour
 {
     public GameObject CubePrefab;
-    public int NumberToSpawn;
+    [HideInInspector] public int NumberToSpawn;
 }
 
 public partial class ECSBaker : Baker<ECSSpawner>

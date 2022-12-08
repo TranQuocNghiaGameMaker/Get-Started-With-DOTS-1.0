@@ -169,4 +169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CubePrefab: {fileID: 9009819518464534288, guid: bc8a12bf8e504ea4d96787e93912cd40,
     type: 3}
-  NumberToSpawn: 10
+  NumberToSpawn: 4

@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class ViewDistanceSetter : MonoBehaviour
 {
+    private Camera cam;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        var ecsSpawnerQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(NumberToSpawn));
-        int numberToSpawn = ecsSpawnerQuery.GetSingleton<NumberToSpawn>().Value;
-        SetDistanceFromOrigin(numberToSpawn);
+        cam = Camera.main;
     }
-
-    private void SetDistanceFromOrigin(float distance)
+    public void SetDistanceFromOrigin(float distance)
     {
-        Vector3 viewDirection = transform.position.normalized;
-        transform.position = viewDirection * distance;
+        Vector3 viewDirection = cam.transform.position.normalized;
+        cam.transform.position = viewDirection * distance;
     }
 }
