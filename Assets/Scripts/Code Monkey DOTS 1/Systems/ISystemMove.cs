@@ -14,6 +14,7 @@ public partial struct ISystemMove : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
+        state.RequireForUpdate<RandomComponent>();
     }
     [BurstCompile]
     public void OnDestroy(ref SystemState state)
