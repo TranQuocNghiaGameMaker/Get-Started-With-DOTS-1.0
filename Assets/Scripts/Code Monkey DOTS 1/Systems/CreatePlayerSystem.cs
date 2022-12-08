@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 //Create system run on main thread, can't use Burst Compile
-public partial class CreatePlayerSystem : SystemBase
+/*public partial class CreatePlayerSystem : SystemBase
 {
     protected override void OnUpdate()
     {
@@ -23,4 +23,4 @@ public partial class CreatePlayerSystem : SystemBase
             });
         }
     }
-}
+}*/

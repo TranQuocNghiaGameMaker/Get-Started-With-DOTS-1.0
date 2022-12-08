@@ -22,7 +22,7 @@ public partial struct ISystemMove : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        var deltaTime = SystemAPI.Time.DeltaTime;
+       /* var deltaTime = SystemAPI.Time.DeltaTime;
         var random = SystemAPI.GetSingletonRW<RandomComponent>();
         JobHandle moveJob = new MoveJob { 
             deltaTime = deltaTime
@@ -32,7 +32,7 @@ public partial struct ISystemMove : ISystem
         new CheckArrivedJob
         {
             randomComponent = random
-        }.Run();
+        }.Run();*/
     }
 }
 [BurstCompile]
