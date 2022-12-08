@@ -19,7 +19,7 @@ public readonly partial struct WaveAspect : IAspect
     public void CreateWaveEffect()
     {
         var position = _transform.Position;
-        position.y = math.sin(_distance.ValueRO.Value - _lifeTime.ValueRO.Value);
+        position.y = math.cos(_distance.ValueRO.Value - _lifeTime.ValueRO.Value);
         _transform.Position = position;
     }
 }

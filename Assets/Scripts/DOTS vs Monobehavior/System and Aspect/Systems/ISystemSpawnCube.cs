@@ -22,7 +22,7 @@ public partial struct ISystemSpawnCube : ISystem
     {
         state.Enabled = false;
         var ecbSingleton = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-        var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+        var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter();
         new SpawnCubeJob
         {
             ECB = ecb
@@ -32,9 +32,9 @@ public partial struct ISystemSpawnCube : ISystem
 [BurstCompile]
 public partial struct SpawnCubeJob : IJobEntity
 {
-    public EntityCommandBuffer ECB;
+    public EntityCommandBuffer.ParallelWriter ECB;
     [BurstCompile]
-    private void Execute(SpawnCubeAspect ecsSpawner)
+    private void Execute(SpawnCubeAspect ecsSpawner,[EntityInQueryIndex] int sortkey)
     {
         var numberToSpawn = ecsSpawner.NumberToSpawn;
         var start = numberToSpawn / 2 * -1;
@@ -51,18 +51,17 @@ public partial struct SpawnCubeJob : IJobEntity
                     Position = Pos,
                     Scale = 0.85f
                 };
-                var cube = ECB.Instantiate(ecsSpawner.CubePrefab);
-                ECB.SetComponent(cube, new LocalToWorldTransform
+                var cube = ECB.Instantiate(sortkey,ecsSpawner.CubePrefab);
+                ECB.SetComponent(sortkey,cube, new LocalToWorldTransform
                 {
                     Value = UniformPos
 
                 });
-                ECB.SetComponent(cube, new DistanceToOrigin
+                ECB.SetComponent(sortkey,cube, new DistanceToOrigin
                 {
                     Value = magnitude
                 });
             }
         }
-        //ecb.Playback(state.EntityManager);
     }
 }
