@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fded3989ebc5b1d4aab395d57ca040ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 335208845}
 --- !u!1 &335208843
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,3 +884,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberToSpawn: 17
   useECS: 0
+  cubePrefab: {fileID: 9009819518464534288, guid: 514279c4b71bcfc43a566afb98ccfafe,
+    type: 3}

@@ -6,20 +6,34 @@ public class InitializeSystem : MonoBehaviour
 {
     [SerializeField] int numberToSpawn;
     [SerializeField] bool useECS;
+
+    [Tooltip("For Monobehaviour system")]
+    [Header("MonoBehaviour 's prefab")]
+    [SerializeField] GameObject cubePrefab;
+
     private ViewDistanceSetter camView;
     private TextMeshProUGUI numberText;
-    // Start is called before the first frame update
     void Start()
     {
-        GetNumberEntitiesSpawn();
+        if (!useECS)
+        {
+            var spawnerObj = new GameObject("Spawner", typeof(GameObjectSpawner));
+            spawnerObj.GetComponent<GameObjectSpawner>().Initialize(numberToSpawn, numberToSpawn, cubePrefab);
+            new GameObject("Wave System", typeof(WaveMonoSystem));
+            World.DefaultGameObjectInjectionWorld.DestroyAllSystemsAndLogException();
+        }
+        else
+        {
+           GetNumberEntitiesSpawn(numberToSpawn);
+        }
         GetCameraDistanceSetter();
         GetText();
     }
 
-    private void GetNumberEntitiesSpawn()
+    private void GetNumberEntitiesSpawn(int number)
     {
         var ecsSpawnerQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(NumberToSpawn));
-        ecsSpawnerQuery.GetSingletonRW<NumberToSpawn>().ValueRW.Value = numberToSpawn;
+        ecsSpawnerQuery.GetSingletonRW<NumberToSpawn>().ValueRW.Value = number;
     }
 
     private void GetCameraDistanceSetter()

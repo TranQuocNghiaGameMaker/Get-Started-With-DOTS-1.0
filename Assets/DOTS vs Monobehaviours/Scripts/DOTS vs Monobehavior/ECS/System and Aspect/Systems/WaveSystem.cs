@@ -23,7 +23,7 @@ public partial struct WaveSystem : ISystem
         new WaveJob
         {
             DeltaTime = deltaTime
-        }.Schedule();
+        }.ScheduleParallel();
     }
 }
 

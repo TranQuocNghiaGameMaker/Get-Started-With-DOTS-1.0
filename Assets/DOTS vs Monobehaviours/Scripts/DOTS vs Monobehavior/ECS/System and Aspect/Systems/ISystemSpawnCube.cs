@@ -26,7 +26,7 @@ public partial struct ISystemSpawnCube : ISystem
         new SpawnCubeJob
         {
             ECB = ecb
-        }.Run();
+        }.ScheduleParallel();
     }
 }
 [BurstCompile]
@@ -49,7 +49,7 @@ public partial struct SpawnCubeJob : IJobEntity
                 var UniformPos = new UniformScaleTransform
                 {
                     Position = Pos,
-                    Scale = 0.85f
+                    Scale = 0.95f
                 };
                 var cube = ECB.Instantiate(sortkey,ecsSpawner.CubePrefab);
                 ECB.SetComponent(sortkey,cube, new LocalToWorldTransform
